@@ -1,7 +1,7 @@
 include("shared.lua")
 
 surface.CreateFont("MainFont", {
-    font = "Comic Sans MS", --  Use the font-name which is shown to you by your operating system Font Viewer, not the file name
+    font = "Comic Sans MS",
     size = 40,
     weight = 500,
 })
@@ -10,9 +10,8 @@ function ENT:Draw()
     self:DrawModel()
 end
 
---net.Receive("Open", function()
+
 local function myOpen()
-    --print("JOOOOOOOOOOOOOOOOOOOOOO")
     local frame = vgui.Create("DFrame")
     frame:SetSize(600, 720)
     frame:Center()
@@ -23,11 +22,11 @@ local function myOpen()
     frame:SetTitle("Heal-Station")
 
     frame.Paint = function(s, w, h)
-        draw.RoundedBox(12, 0, 0, w, h, Color(105, 105, 105, 230)) ---Allgemeines Derma-Menümenü
-        draw.RoundedBox(12, 2, 2, w - 4, h - 4, Color(0, 0, 0, 100)) --das auch nur Außenlinie
+        draw.RoundedBox(12, 0, 0, w, h, Color(105, 105, 105, 230)) 
+        draw.RoundedBox(12, 2, 2, w - 4, h - 4, Color(0, 0, 0, 100)) 
     end
 
-    --local health = LocalPlayer():Health()
+    
     local sheetmain = vgui.Create("DPropertySheet", frame)
     sheetmain:Dock(FILL)
     local TradeList1 = vgui.Create("DPanelList")
