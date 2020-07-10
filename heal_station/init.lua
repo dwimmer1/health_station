@@ -4,7 +4,7 @@ util.AddNetworkString("100health")
 util.AddNetworkString("25armor")
 util.AddNetworkString("50armor")
 util.AddNetworkString("100armor")
-AddCSLuaFile("cl_init.lua") --Es sagt dem Server das das File dem Cl gesendet wird
+AddCSLuaFile("cl_init.lua") 
 AddCSLuaFile("shared.lua")
 include("shared.lua")
 
@@ -16,7 +16,6 @@ function ENT:Initialize()
     self:SetUseType(SIMPLE_USE)
     local phys = self:GetPhysicsObject()
 
-    --phys valid 
     if phys:IsValid() then
         phys:Wake()
     end
@@ -24,7 +23,6 @@ end
 
 function ENT:AcceptInput(Name, Activator, Caller)
     if Name == "Use" and Caller:IsPlayer() then
-        --net.Start("Open")
         umsg.Start("openframe", Caller)
         umsg.End()
     end
