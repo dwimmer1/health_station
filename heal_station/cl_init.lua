@@ -22,11 +22,10 @@ local function myOpen()
     frame:SetTitle("Heal-Station")
 
     frame.Paint = function(s, w, h)
-        draw.RoundedBox(12, 0, 0, w, h, Color(105, 105, 105, 230)) 
-        draw.RoundedBox(12, 2, 2, w - 4, h - 4, Color(0, 0, 0, 100)) 
+        draw.RoundedBox(12, 0, 0, w, h, Color(105, 105, 105, 230))
+        draw.RoundedBox(12, 2, 2, w - 4, h - 4, Color(0, 0, 0, 100))
     end
 
-    
     local sheetmain = vgui.Create("DPropertySheet", frame)
     sheetmain:Dock(FILL)
     local List1 = vgui.Create("DPanelList")
@@ -64,7 +63,9 @@ local function myOpen()
 
     buttonA1.DoClick = function()
         surface.PlaySound("items/smallmedkit1.wav")
-        net.Start("25health")
+        net.Start("start")
+        net.WriteUInt(25, 8)
+        net.WriteString("25health")
         net.SendToServer()
     end
 
@@ -74,10 +75,11 @@ local function myOpen()
     buttonA2:SetMouseInputEnabled(true)
     buttonA2:SetText("Für 50€ Kaufen")
     buttonA2:SetParent(PanelA2)
-
     buttonA2.DoClick = function()
         surface.PlaySound("items/medshot4.wav")
-        net.Start("50health")
+        net.Start("start")
+        net.WriteUInt(50, 8)
+        net.WriteString("50health")
         net.SendToServer()
     end
 
@@ -90,7 +92,9 @@ local function myOpen()
 
     buttonA3.DoClick = function()
         surface.PlaySound("items/medshot4.wav")
-        net.Start("100health")
+        net.Start("start")
+        net.WriteUInt(100, 8)
+        net.WriteString("100health")
         net.SendToServer()
     end
 
@@ -103,7 +107,9 @@ local function myOpen()
 
     buttonB1.DoClick = function()
         surface.PlaySound("items/battery_pickup.wav")
-        net.Start("25armor")
+        net.Start("start")
+        net.WriteUInt(25, 8)
+        net.WriteString("25armor")
         net.SendToServer()
     end
 
@@ -116,7 +122,9 @@ local function myOpen()
 
     buttonB2.DoClick = function()
         surface.PlaySound("items/battery_pickup.wav")
-        net.Start("50armor")
+        net.Start("start")
+        net.WriteUInt(50, 8)
+        net.WriteString("50armor")
         net.SendToServer()
     end
 
@@ -129,7 +137,9 @@ local function myOpen()
 
     buttonB3.DoClick = function()
         surface.PlaySound("items/battery_pickup.wav")
-        net.Start("100armor")
+        net.Start("start")
+        net.WriteUInt(100, 8)
+        net.WriteString("100armor")
         net.SendToServer()
     end
 
