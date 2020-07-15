@@ -10,7 +10,6 @@ function ENT:Draw()
     self:DrawModel()
 end
 
-
 local function myOpen()
     local frame = vgui.Create("DFrame")
     frame:SetSize(600, 720)
