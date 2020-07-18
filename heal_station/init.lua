@@ -16,11 +16,11 @@ function ENT:Initialize()
     end
 end
 
-function ENT:AcceptInput(Name, Activator, Caller)
-    if Name == "Use" and Caller:IsPlayer() then
+function ENT:Use(activator, Caller)
+    timer.Simple(0.1, function()
         umsg.Start("openframe", Caller)
         umsg.End()
-    end
+    end)
 end
 
 net.Receive("start", function(len, ply)
@@ -42,22 +42,22 @@ net.Receive("start", function(len, ply)
             ply:SetHealth(100)
             DarkRP.notify(ply, 1, 4, string.format("Du hast bereits die maximale Gesundheit erreicht."))
         end
-    end
+    else
+        if str == "25armor" or str == "50armor" or str == "100armor" then
+            if ply:Armor() < 100 then
+                ply:SetArmor(ply:Armor() + health)
 
-    if str == "25armor" or str == "50armor" or str == "100armor" then
-        if ply:Armor() < 100 then
-            ply:SetArmor(ply:Armor() + health)
-
-            if not ply:canAfford(50) then
-                DarkRP.notify(ply, 1, 4, string.format("Das kannst du dir nicht leisten."))
-            else
-                ply:addMoney(-50)
+                if not ply:canAfford(50) then
+                    DarkRP.notify(ply, 1, 4, string.format("Das kannst du dir nicht leisten."))
+                else
+                    ply:addMoney(-50)
+                end
             end
-        end
 
-        if ply:Armor() > 100 or ply:Armor() == 100 then
-            ply:SetArmor(100)
-            DarkRP.notify(ply, 1, 4, string.format("Du hast bereits die maximale Gesundheit erreicht."))
+            if ply:Armor() > 100 or ply:Armor() == 100 then
+                ply:SetArmor(100)
+                DarkRP.notify(ply, 1, 4, string.format("Du hast bereits die maximale Gesundheit erreicht."))
+            end
         end
     end
 end)
