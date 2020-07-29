@@ -8,6 +8,15 @@ surface.CreateFont("MainFont", {
 
 function ENT:Draw()
     self:DrawModel()
+    local distance = LocalPlayer():GetPos():Distance(self:GetPos())
+    local displayAng = LocalPlayer():EyeAngles()
+    local displayPos = self:GetPos() + Vector(0, 0, 80)
+
+    if (IsValid(self) and distance < 300) then
+        cam.Start3D2D(displayPos, Angle(0, displayAng.y - 90, 90), 0.15)
+        draw.SimpleText("Health Station", "MainFont", 0, 270, color_white, TEXT_ALIGN_CENTER, TEXT_ALIGN_TOP)
+        cam.End3D2D()
+    end
 end
 
 local function myOpen()
